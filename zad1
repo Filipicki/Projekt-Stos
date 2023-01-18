@@ -1,0 +1,120 @@
+#include <stack>
+#include <stdio.h>
+#include <iostream>
+#include <windows.h>
+
+
+using namespace std;
+
+int rozmiar[6]; //zdeklarowanie rozmiaru stosu
+int z; // zmienna okreslajaca miejsce w tablicy
+
+
+void stos(){  //wyswietlanie zawartosci stosu
+
+cout<<"________________________________________________"<<endl;
+cout<<"Stos: "<<endl;
+cout<<"________________________________________________"<<endl;
+
+for (int i=z; i>=1; i--) // wypisywanie kolejnych elementow w stosie
+    {
+        cout<<rozmiar[i]<<endl;
+    }
+
+    if (z==0) cout<<"pusty"<<endl;
+
+    cout <<"------------------------------------------------"<<endl<<endl;
+
+
+}
+
+void push (){  //dodawanie liczby na wierzch stosu
+if (z >= 5){
+    cout<<"Stos jest pelny."<<endl;
+    Sleep(1000); //zatrzymuje dzialanie programu dzieki czemu uzytkownik ma czas na przeczytanie komunikatu
+}
+
+else {cout<<endl<<"Dodaj liczbe do stosu: ";
+
+ z=z+1; // przechodzi na następne miejsce w tablicy
+ cin>> rozmiar[z];
+
+ return ;
+}
+}
+
+
+void empty (){
+    if (z == 0) cout<<endl<<"Stos jest pusty"<<endl; //sprawdzanie czy stos jest pusty
+    else cout<<endl<<"Stos ma element/y"<<endl;
+    Sleep(1000);
+
+}
+
+void pop(){ // usuwanie ze stosu elementu z samej gory
+    if (z >=1){
+        cout<<endl<<"Usuwam wierzchni element stosu "<<rozmiar[z]<<endl;
+
+        z=z-1;
+        Sleep(1000);
+        return ;}
+}
+
+void size() {  //wyswietlenie ilosi elementow na stosie
+    cout<<endl<<"Liczba elementow na stosie: "<<z<<endl;
+    Sleep(1000);
+}
+
+void peek(){  //wyswietlenie wierzchniego elementu stosu bez usuwania go
+cout<<"Wierzchnia wartosc stosu wynosi: "<<rozmiar[z]<<endl;
+Sleep(2000);}
+
+int main (){ // funkcja glowna
+    z=0;
+    int w;
+
+    do{
+
+    stos();
+
+    cout<<"======================MENU======================"<<endl;  // menu pozwlajace wywolywanie poszczegolnych funkcji
+    cout<<"1. Dodaj liczbe do stosu (push)"<<endl;
+    cout<<"2. Sprawdz czy stos jest pusty (empty)"<<endl;
+    cout<<"3. Zdejmij wierzchni element stosu (pop)"<<endl;
+    cout<<"4. Pokaz ile elementow ma stos (size)"<<endl;
+    cout<<"5. Pokaz wierzchnia wartosc na stosie (peek)"<<endl;
+    cout<<"6. Wyjscie"<<endl;
+    cout<<"================================================"<<endl;
+    cout<<"Wybierz opcje: ";
+    cin>>w;
+
+  switch(w)
+        {
+        case 1:
+            push();
+            break;
+
+        case 2:
+            empty();
+            break;
+
+        case 3:
+            pop();
+            break;
+
+        case 4:
+            size();
+            break;
+
+        case 5:
+            peek();
+            break;
+
+        }
+
+    }
+    while (w != 6); // wyjscie z programu
+
+
+return 0;
+}
